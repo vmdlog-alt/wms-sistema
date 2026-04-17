@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>WMS Sistema</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body { font-family: Arial; background:#0f172a; color:white; margin:0 }
+header { padding:15px; background:#1e293b; text-align:center; font-size:20px }
+.container { padding:20px }
+.card {
+  background:#1e293b;
+  padding:20px;
+  margin-bottom:15px;
+  border-radius:10px;
+}
+button {
+  width:100%;
+  padding:15px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+.entrada { background:#22c55e }
+.saida { background:#ef4444 }
+.cadastro { background:#3b82f6 }
+input {
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:5px;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>📦 WMS CONTROLE</header>
+
+<div class="container">
+
+<div class="card">
+<h3>Cadastrar Produto</h3>
+<input id="nome" placeholder="Nome">
+<input id="familia" placeholder="Família">
+<input id="estoque" placeholder="Estoque inicial">
+<input id="endereco" placeholder="Endereço">
+<input id="picking" placeholder="Picking (SIM/NÃO)">
+<button class="cadastro" onclick="cadastrar()">Cadastrar</button>
+</div>
+
+<div class="card">
+<h3>Saída Inteligente</h3>
+<input id="prodSaida" placeholder="Produto">
+<input id="qtdSaida" placeholder="Quantidade">
+<button class="saida" onclick="saida()">Registrar Saída</button>
+</div>
+
+</div>
+
+<script>
+async function cadastrar() {
+  await fetch("/produto", {
+    method:"POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      nome: nome.value,
+      familia: familia.value,
+      estoque: parseInt(estoque.value),
+      endereco: endereco.value,
+      picking: picking.value
+    })
+  })
+  alert("Produto cadastrado!")
+}
+
+async function saida() {
+  const url = `/saida?nome=${prodSaida.value}&qtd=${qtdSaida.value}`
+  const res = await fetch(url, {method:"POST"})
+  const data = await res.json()
+  alert(JSON.stringify(data))
+}
+</script>
+
+</body>
+</html>
