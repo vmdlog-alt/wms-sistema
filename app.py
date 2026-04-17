@@ -71,3 +71,4 @@ def saida(nome: str, qtd: int):
         "picking": retirada_picking,
         "outros": retirada_outros
     }
+
