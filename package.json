@@ -1,0 +1,25 @@
+{
+  "name": "wms-vmd-exe",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "electron": "^41.5.0",
+    "next": "15.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "prisma": "^7.8.0",
+    "typescript": "^5.0.0"
+  }
+}
